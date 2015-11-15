@@ -1,6 +1,6 @@
 # Event Bus
 
-Simple eventing bus for your JavaScript application.
+Simple event bus for your JavaScript application.
 
 # Usage
 
