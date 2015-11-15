@@ -1,2 +1,3 @@
-# event_bus
-Simple eventing bus
+# Event Bus
+
+Simple eventing bus for your JavaScript application
