@@ -1,7 +1,8 @@
-import { each } from 'lodash';
+var EventBus;
+var lodash = require('lodash');
 
-var EventBus,
-    slice = [].slice;
+var each = lodash.each;
+var slice = [].slice;
 
 EventBus = (function() {
   function EventBus() {
@@ -35,4 +36,4 @@ EventBus = (function() {
 
 })();
 
-export default (new EventBus());
+module.exports = new EventBus();

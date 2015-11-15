@@ -29,6 +29,6 @@
     "webpack": "^1.12.6"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^1.3.1"
   }
 }
