@@ -7,7 +7,7 @@ Simple event bus for your JavaScript application.
 # Usage
 
 ````javascript
-import EventBus from 'eventing_bus'
+import EventBus from 'eventing-bus'
 
 var callback = function() { console.log("Hello!"); };
 
