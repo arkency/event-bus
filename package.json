@@ -1,5 +1,5 @@
 {
-  "name": "event-bus",
+  "name": "eventing-bus",
   "version": "0.0.1",
   "description": "Simple event bus",
   "main": "index.js",
