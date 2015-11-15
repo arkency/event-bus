@@ -1,5 +1,5 @@
 {
-  "name": "event_bus",
+  "name": "event-bus",
   "version": "0.0.1",
   "description": "Simple event bus",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkency/event_bus.git"
+    "url": "git+https://github.com/arkency/event-bus.git"
   },
   "keywords": [
     "eventing",
@@ -18,9 +18,9 @@
   "author": "Wiktor Mociun <voter101@gmail.com> (http://voter101.pl)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arkency/event_bus/issues"
+    "url": "https://github.com/arkency/event-bus/issues"
   },
-  "homepage": "https://github.com/arkency/event_bus#readme",
+  "homepage": "https://github.com/arkency/event-bus#readme",
   "devDependencies": {
     "babel-core": "^6.1.21",
     "babel-preset-es2015": "^6.1.18",
