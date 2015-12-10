@@ -1,6 +1,6 @@
 {
   "name": "eventing-bus",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Simple event bus",
   "main": "index.js",
   "scripts": {
