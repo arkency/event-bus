@@ -5,7 +5,7 @@ import EventBus from '../index';
 const firstEvent  = 'firstEvent';
 const secondEvent = 'secondEvent';
 
-describe("Test", () => {
+describe("Event Bus", () => {
   let stubs;
   beforeEach(() => {
     stubs = createStubs();
