@@ -25,3 +25,9 @@ import EventStream from 'eventing-bus/lib/event_stream';
 var bus = EventStream();
 var anotherBus = new EventStream(); /* Both styles possible. */
 ````
+
+# Compatibility
+
+If you want to use this library on legacy browsers (IE <= 8 etc.), you need to
+provide polyfills for `Array.forEach` function. Check out e.g.
+ [es5-shim](https://github.com/es-shims/es5-shim) to read more.
