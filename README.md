@@ -38,7 +38,7 @@ var newPrivateBus = new EventStream();
 
 Those _streams_ created by you won't share any subscriptions, nor events.
 
-## Unregistering subscriptions:
+## Unregistering a single subscription:
 
 If you need to unregister a subscription (a typical case would be inside the React.js component), it is as easy as calling a return value of the `#on` method as a function:
 
