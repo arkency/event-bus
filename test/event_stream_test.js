@@ -81,6 +81,63 @@ describe("Event Stream", () => {
 
       assert(secondAfter);
     };
+
+    this.assertUnregisteringSingleSubscription = function(assert, instance) {
+      let subscriberCalled = 0;
+      const subscriberCallback = function() {
+        subscriberCalled += 1;
+      };
+
+      const subscription = instance.on('event', subscriberCallback);
+      instance.publish('event');
+      assert(subscriberCalled === 1,
+        'before unregister the subscription should get called - it is not.');
+      subscription();
+      instance.publish('event');
+      assert(subscriberCalled !== 2, 
+        'after unregistering the subscription is getting called (wrong)');      
+    };
+
+    this.assertOnlyOneSubscriptionIsUnsubscribed = function(assert, instance) {
+      let firstCounter = 0;
+      let secondCounter = 0;
+
+      const firstCallback = function() { firstCounter += 1; };
+      const secondCallback = function() { secondCounter += 1; };
+
+      const eventFirstSub = instance.on('event', firstCallback);
+      const eventSecondSub = instance.on('event', secondCallback);
+      const eventFirstSubAgain = instance.on('event', firstCallback);
+      const anotherEventSub = instance.on('event2', firstCallback);
+
+      instance.publish('event');
+      assert(firstCounter === 2, 
+            'Double subscription not incremented the first counter twice');
+      assert(secondCounter === 1,
+            'Second subscription not incremented the second counter once');
+
+      eventSecondSub();
+      instance.publish('event');
+
+      assert(firstCounter === 4 && secondCounter === 1,
+            'Unregistering the subscription for secondCounter is affecting' +
+            ' the first counter subscriptions');
+
+      eventFirstSubAgain();
+      instance.publish('event');
+      assert(firstCounter === 5,
+        'Unregistering one of the twice defined callbacks affected the rest too');
+
+      instance.publish('event2');
+      assert(firstCounter === 6,
+        'publishing event2 not invoked the associated subscription');
+      anotherEventSub();
+
+      instance.publish('event');
+      assert(firstCounter === 7,
+        'the subscription associated to an another event somehow affected the' +
+        'another subscription');      
+    };
   });
 
   it("can be used with a factory function approach", function() {
@@ -104,5 +161,14 @@ describe("Event Stream", () => {
 
     this.assertFirstInFirstOutBehavior(assert, instance);
     this.assertFirstInFirstOutBehavior(assert, instanceNew);
+  });
+
+  it("allows you to unregister the single subscription", 
+    function() {
+      this.assertUnregisteringSingleSubscription(assert, EventStream());
+      this.assertUnregisteringSingleSubscription(assert, new EventStream());
+
+      this.assertOnlyOneSubscriptionIsUnsubscribed(assert, EventStream());
+      this.assertOnlyOneSubscriptionIsUnsubscribed(assert, new EventStream());
   });
 });
