@@ -21,7 +21,7 @@ import EventBus from 'eventing-bus';
 
 EventBus.publish("exampleEventName", "Watson");
 /* After registering the subscription and publishing an event you should see
-   "Hello, Watson!" printed in your browser's console. */   
+   "Hello, Watson!" printed in your console. */   
 ````
 
 ## More than one event bus:
