@@ -49,7 +49,7 @@ var subscription = EventBus.on('event', function() {
   // ...
 });
 
-/* This will unregister this (and only this) subscription.
+// This will unregister this (and only this) subscription.
 subscription();
 ````
 
