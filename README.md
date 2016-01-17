@@ -66,7 +66,7 @@ EventBus.unregisterAllCallbacks();
 ## Compatibility
 
 If you want to use this library on legacy browsers (IE <= 8 etc.), you need to
-provide polyfills for `Array.forEach` function. Check out e.g.
+provide polyfills for `Array.forEach` and `Array.filter` functions. Check out e.g.
  [es5-shim](https://github.com/es-shims/es5-shim) to read more.
 
 ## Contributing
