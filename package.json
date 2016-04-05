@@ -4,7 +4,7 @@
   "description": "Simple event bus",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-register test/**/*.js"
+    "test": "mocha --require babel-register $(find ./test -type f -name '*.js')"
   },
   "repository": {
     "type": "git",
