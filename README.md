@@ -38,6 +38,21 @@ var newPrivateBus = new EventStream();
 
 Those _streams_ created by you won't share any subscriptions, nor events.
 
+## Global Event Bus using `window` as a sharing mechanism
+
+If your front-end produces few independent environments (e.g. we have 3
+independent bundled JS files on our website), they won't share `eventing-bus`
+with each other by default. However you can use `eventing-bus` placed in
+browser's `window` by default.
+
+```
+import EventBus from 'eventing-bus/lib/window_event_stream';
+// Now each time you import the `EventBus` like that, it will look for
+// its instance in browser's `window`
+```
+
+**Warning!** It will throw error if `window` is not reachable.
+
 ## Unregistering a single subscription:
 
 If you need to unregister a subscription (a typical case would be inside the React.js component), it is as easy as calling a return value of the `#on` method as a function:
