@@ -45,11 +45,11 @@ independent bundled JS files on our website), they won't share `eventing-bus`
 with each other by default. However you can use `eventing-bus` placed in
 browser's `window` by default.
 
-```
+````javascript
 import EventBus from 'eventing-bus/lib/window_event_stream';
 // Now each time you import the `EventBus` like that, it will look for
 // its instance in browser's `window`
-```
+````
 
 **Warning!** It will throw error if `window` is not reachable.
 
