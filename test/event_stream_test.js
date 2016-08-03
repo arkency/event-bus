@@ -12,10 +12,10 @@ describe("Event Stream", function() {
       };
 
       var exampleListeners = {
-        instanceOne: x => { exampleState.instanceOne = x },
-        instanceTwo: x => { exampleState.instanceTwo = x },
-        instanceThree: x => { exampleState.instanceThree = x; }, 
-        secondInstance: x => { exampleState.secondInstance = x; }
+        instanceOne: function(x) { exampleState.instanceOne = x },
+        instanceTwo: function(x) { exampleState.instanceTwo = x },
+        instanceThree: function(x) { exampleState.instanceThree = x; }, 
+        secondInstance: function(x) { exampleState.secondInstance = x; }
       };
 
       instance.on('foo', exampleListeners.instanceOne);
