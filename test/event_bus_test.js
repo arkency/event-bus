@@ -1,12 +1,8 @@
-import assert   from 'assert';
-import sinon    from 'sinon';
-import EventBus from '../index';
-import EventStream from "../lib/event_stream";
+var assert = require('assert');
+var EventBus = require('../lib/event_bus');
+var EventStream = require('../lib/event_stream');
 
-const firstEvent  = 'firstEvent';
-const secondEvent = 'secondEvent';
-
-describe("Event Bus", () => {
+describe("Event Bus", function() {
   it("is an instance of event stream", function() {
     assert(EventBus instanceof EventStream);
   });

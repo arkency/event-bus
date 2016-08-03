@@ -4,6 +4,52 @@
 
 Simple event bus for your JavaScript application without any dependencies and with a low size footprint.
 
+## Installation:
+
+### Node.js:
+
+```
+npm install --save eventing-bus
+```
+
+### Webpack:
+
+```
+npm install --save-dev eventing-bus
+```
+
+### `<script>` tag:
+
+Check out the [`dist/`](/dist) folder. There you have three options:
+
+* `event_bus.standalone-<version>.js` - I don't want to use `EventStream` to create more than one bus. Global event bus is good enough. **The most straightforward way. Use it if you're unsure what to choose.**
+* `event_bus-<version>.js` - I want to use a global `EventBus` instance, but I want to include `EventStream` too.
+* `event_stream-<version>.js` - I want to use only `EventStream` to create my own buses.
+
+Possible configurations:
+
+```html
+<script src="event_bus-<version>.standalone.js"></script>
+
+<!-- Global Event Bus available in window.EventBus -->
+```
+
+```html
+<script src="event_bus-<version>.js"></script>
+<script src="event_stream-<version>.js"></script>
+
+<!-- Global Event Bus available in window.EventBus -->
+<!-- EventStream factory method available in window.EventStream -->
+```
+
+```html
+<script src="event_stream-<version>.js"></script>
+
+<!-- EventStream factory method available in window.EventStream -->
+```
+
+There are also minified versions with `.min.js` at the end.
+
 ## Subscribing to events:
 
 ````javascript

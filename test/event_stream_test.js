@@ -1,17 +1,17 @@
-import assert from 'assert';
-import EventStream from '../lib/event_stream';
+var assert = require('assert');
+var EventStream = require('../lib/event_stream');
 
 describe("Event Stream", () => {
   beforeEach(function() {
-    this.assertStreamPairBehavior = (assert, instance, secondInstance) => {
-      let exampleState = {
+    this.assertStreamPairBehavior = function(assert, instance, secondInstance) {
+      var exampleState = {
         instanceOne: undefined,
         instanceTwo: undefined,
         instanceThree: undefined,
         secondInstance: undefined
       };
 
-      let exampleListeners = {
+      var exampleListeners = {
         instanceOne: x => { exampleState.instanceOne = x },
         instanceTwo: x => { exampleState.instanceTwo = x },
         instanceThree: x => { exampleState.instanceThree = x; }, 
@@ -63,14 +63,15 @@ describe("Event Stream", () => {
       assert(exampleState.secondInstance === 24);
     };
 
-    this.assertFirstInFirstOutBehavior = (assert, stream) => {
-      let firstCalled = false, secondAfter = false;
+    this.assertFirstInFirstOutBehavior = function(assert, stream) {
+      var firstCalled = false, 
+          secondAfter = false;
 
-      const methodOne = () => {
+      var methodOne = () => {
         firstCalled = true;
       };
 
-      const methodTwo = () => {
+      var methodTwo = () => {
         if(firstCalled) secondAfter = true;
       };
 
@@ -83,12 +84,12 @@ describe("Event Stream", () => {
     };
 
     this.assertUnregisteringSingleSubscription = function(assert, instance) {
-      let subscriberCalled = 0;
-      const subscriberCallback = function() {
+      var subscriberCalled = 0;
+      var subscriberCallback = function() {
         subscriberCalled += 1;
       };
 
-      const subscription = instance.on('event', subscriberCallback);
+      var subscription = instance.on('event', subscriberCallback);
       instance.publish('event');
       assert(subscriberCalled === 1,
         'before unregister the subscription should get called - it is not.');
@@ -99,16 +100,16 @@ describe("Event Stream", () => {
     };
 
     this.assertOnlyOneSubscriptionIsUnsubscribed = function(assert, instance) {
-      let firstCounter = 0;
-      let secondCounter = 0;
+      var firstCounter = 0;
+      var secondCounter = 0;
 
-      const firstCallback = function() { firstCounter += 1; };
-      const secondCallback = function() { secondCounter += 1; };
+      var firstCallback = function() { firstCounter += 1; };
+      var secondCallback = function() { secondCounter += 1; };
 
-      const eventFirstSub = instance.on('event', firstCallback);
-      const eventSecondSub = instance.on('event', secondCallback);
-      const eventFirstSubAgain = instance.on('event', firstCallback);
-      const anotherEventSub = instance.on('event2', firstCallback);
+      var eventFirstSub = instance.on('event', firstCallback);
+      var eventSecondSub = instance.on('event', secondCallback);
+      var eventFirstSubAgain = instance.on('event', firstCallback);
+      var anotherEventSub = instance.on('event2', firstCallback);
 
       instance.publish('event');
       assert(firstCounter === 2, 
@@ -141,23 +142,23 @@ describe("Event Stream", () => {
   });
 
   it("can be used with a factory function approach", function() {
-    const instance = EventStream();
-    const secondInstance = EventStream();
+    var instance = EventStream();
+    var secondInstance = EventStream();
 
     assert(instance !== secondInstance);
     this.assertStreamPairBehavior(assert, instance, secondInstance);
   });
 
   it("can be used with the 'new' keyword approach", function() {
-    const instance = new EventStream();
-    const secondInstance = new EventStream();
+    var instance = new EventStream();
+    var secondInstance = new EventStream();
 
     this.assertStreamPairBehavior(assert, instance, secondInstance);
   });
 
   it("calls listeners in a first in, first out fashion", function() {
-    const instance = EventStream();
-    const instanceNew = new EventStream();
+    var instance = EventStream();
+    var instanceNew = new EventStream();
 
     this.assertFirstInFirstOutBehavior(assert, instance);
     this.assertFirstInFirstOutBehavior(assert, instanceNew);
