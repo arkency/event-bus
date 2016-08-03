@@ -1,7 +1,7 @@
 var assert = require('assert');
 var EventStream = require('../lib/event_stream');
 
-describe("Event Stream", () => {
+describe("Event Stream", function() {
   beforeEach(function() {
     this.assertStreamPairBehavior = function(assert, instance, secondInstance) {
       var exampleState = {
@@ -67,11 +67,11 @@ describe("Event Stream", () => {
       var firstCalled = false, 
           secondAfter = false;
 
-      var methodOne = () => {
+      var methodOne = function() {
         firstCalled = true;
       };
 
-      var methodTwo = () => {
+      var methodTwo = function() {
         if(firstCalled) secondAfter = true;
       };
 
