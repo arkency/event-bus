@@ -20,7 +20,7 @@ npm install --save-dev eventing-bus
 
 ### `<script>` tag:
 
-Check out the [`dist/`](/dist) folder. There you have three options:
+Check out the [lastest release](/releases/latest). There you have three options:
 
 * `event_bus.standalone-<version>.js` - I don't want to use `EventStream` to create more than one bus. Global event bus is good enough. **The most straightforward way. Use it if you're unsure what to choose.**
 * `event_bus-<version>.js` - I want to use a global `EventBus` instance, but I want to include `EventStream` too.
