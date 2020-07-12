@@ -193,4 +193,23 @@ describe("Event Stream", function() {
   it("allows you to unregister all subscriptions for given event", function () {
     this.assertAllSubscriptionsForEventUnsubscribed(assert, new EventStream());
   })
+
+  it("allows you to unregister event handler by callback", function () {
+    var firstCounter = 0
+    var secondCounter = 0
+    var instance = new EventStream()
+    var firstCallback = function () { firstCounter += 1 }
+    var secondCallback = function () { secondCounter += 1 }
+
+    instance.on("event1", firstCallback)
+    instance.on("event2", secondCallback)
+
+    instance.unregisterCallback(firstCallback)
+
+    instance.publish('event1')
+    instance.publish('event2')
+
+    assert.strictEqual(firstCounter, 0)
+    assert.strictEqual(secondCounter, 1)
+  })
 });

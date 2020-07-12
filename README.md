@@ -35,7 +35,7 @@ There is also a possibility to define an event stream [separately from the globa
 ````javascript
 import EventBus from 'eventing-bus'
 
-var callback = function(name) { console.log("Hello, " + name + "!"); };
+const callback = (name) => { console.log(`Hello, ${name}!`) };
 
 EventBus.on("exampleEventName", callback);
 ````
@@ -58,25 +58,52 @@ By default you have only one, singleton event bus instance which holds subscript
 import EventStream from 'eventing-bus/lib/event_stream';
 
 /* You can use EventStream both as a constructor and as a factory function. */
-var privateBus = EventStream();
-var newPrivateBus = new EventStream();
+const privateBus = EventStream();
+const newPrivateBus = new EventStream();
 ````
 
 Those _streams_ created by you won't share any subscriptions, nor events.
 
-## Unregistering a single subscription:
+## Unregistering event handlers:
 
-If you need to unregister a subscription (a typical case would be inside the React.js component), it is as easy as calling a return value of the `#on` method as a function:
+If you need to unregister a subscription – a typical case would be when cleaning after your UI library – you can do it in two ways:
+
+#### Call value returned by `#on`
+
+After registering an event handler, a return calue will be a function unregistering the specific handler.
 
 ````javascript
-import EventBus from "eventing-bus";
+import EventBus from 'eventing-bus';
 
-var subscription = EventBus.on('event', function() {
-  // ...
-});
+const subscription = EventBus.on('event', () => { console.log('test') })
+
+EventBus.publish('event') // Console: 'test'
 
 // This will unregister this (and only this) subscription.
 subscription();
+
+EventBus.publish('event') // No output in console
+````
+
+#### Use `#unregisterCallback`
+
+In case you have no easy access to value returned by `#on`, you can just call `#unregisterCallback`. Additional benefit is that this function does not require knowing an event name. This way you can de-register every single usage of suck callback.
+
+````javascript
+import EventBus from 'eventing-bus';
+
+const callback = () => { console.log('test') }
+
+EventBus.on('eventA', callback)
+EventBus.on('eventB', callback)
+
+EventBus.publish('eventA') // Console: 'test'
+EventBus.publish('eventB') // Console: 'test'
+
+EventBus.unregisterCallback(callback)
+
+EventBus.publish('eventA') // No output in console
+EventBus.publish('eventB') // No output in console
 ````
 
 ## Unregistering subscriptions in bulk:
@@ -89,7 +116,7 @@ Since by default `EventBus` is a singleton instance of the bus, there may be occ
 Removes all event handlers.
 
 ````javascript
-import EventBus from "eventing-bus";
+import EventBus from 'eventing-bus';
 
 EventBus.unregisterAllCallbacks();
 ````
@@ -99,7 +126,7 @@ EventBus.unregisterAllCallbacks();
 Remvoes all event handlers for specific event
 
 ````javascript
-import EventBus from "eventing-bus";
+import EventBus from 'eventing-bus';
 
 EventBus.on('exampleEvent', () => { console.log("EXAMPLE") });
 EventBus.publish("exampleEvent"); // Logs `EXAMPLE`
