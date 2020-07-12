@@ -139,6 +139,29 @@ describe("Event Stream", function() {
         'the subscription associated to an another event somehow affected the' +
         'another subscription');      
     };
+
+    this.assertAllSubscriptionsForEventUnsubscribed = function(assert, instance) {
+      var firstCounter = 0;
+      var secondCounter = 0;
+
+      var firstCallback = function() { firstCounter += 1; };
+      var secondCallback = function() { secondCounter += 1; };
+
+      instance.on('event', firstCallback);
+      instance.on('event', secondCallback);
+      instance.on('event', firstCallback);
+
+      instance.publish('event');
+
+      assert(firstCounter === 2)
+      assert(secondCounter === 1)
+
+      instance.unregisterAllCallbacks()
+      instance.publish('event');
+
+      assert(firstCounter === 2)
+      assert(secondCounter === 1)
+    };
   });
 
   it("can be used with a factory function approach", function() {
@@ -166,10 +189,11 @@ describe("Event Stream", function() {
 
   it("allows you to unregister the single subscription", 
     function() {
-      this.assertUnregisteringSingleSubscription(assert, EventStream());
       this.assertUnregisteringSingleSubscription(assert, new EventStream());
-
-      this.assertOnlyOneSubscriptionIsUnsubscribed(assert, EventStream());
       this.assertOnlyOneSubscriptionIsUnsubscribed(assert, new EventStream());
   });
+
+  it("allows you to unregister all subscriptions for given event", function () {
+    this.assertAllSubscriptionsForEventUnsubscribed(assert, new EventStream());
+  })
 });
