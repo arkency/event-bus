@@ -15,40 +15,20 @@ npm install --save eventing-bus
 ### Webpack:
 
 ```
-npm install --save-dev eventing-bus
+yarn add eventing-bus
 ```
 
-### `<script>` tag:
+or for NPM:
 
-Check out the [lastest release](https://github.com/arkency/event-bus/releases/latest). There you have three options:
-
-* `event_bus.standalone-<version>.js` - I don't want to use `EventStream` to create more than one bus. Global event bus is good enough. **The most straightforward way. Use it if you're unsure what to choose.**
-* `event_bus-<version>.js` - I want to use a global `EventBus` instance, but I want to include `EventStream` too.
-* `event_stream-<version>.js` - I want to use only `EventStream` to create my own buses.
-
-Possible configurations:
-
-```html
-<script src="event_bus-<version>.standalone.js"></script>
-
-<!-- Global Event Bus available in window.EventBus -->
+```
+npm install --save eventing-bus
 ```
 
-```html
-<script src="event_bus-<version>.js"></script>
-<script src="event_stream-<version>.js"></script>
+## Global event bus
 
-<!-- Global Event Bus available in window.EventBus -->
-<!-- EventStream factory method available in window.EventStream -->
-```
+By default exports in JavaScript are evaluated only once. This way we can ensure to have one global event bus without doing anything on our side.
 
-```html
-<script src="event_stream-<version>.js"></script>
-
-<!-- EventStream factory method available in window.EventStream -->
-```
-
-There are also minified versions with `.min.js` at the end.
+There is also a possibility to define an event stream [separately from the global bus](#more-than-one-event-bus).
 
 ## Subscribing to events:
 
@@ -84,21 +64,6 @@ var newPrivateBus = new EventStream();
 
 Those _streams_ created by you won't share any subscriptions, nor events.
 
-## Global Event Bus using `window` as a sharing mechanism
-
-If your front-end produces few independent environments (e.g. we have 3
-independent bundled JS files on our website), they won't share `eventing-bus`
-with each other by default. However you can use `eventing-bus` placed in
-browser's `window` by default.
-
-````javascript
-import EventBus from 'eventing-bus/lib/window_event_stream';
-// Now each time you import the `EventBus` like that, it will look for
-// its instance in browser's `window`
-````
-
-**Warning!** It will throw error if `window` is not reachable.
-
 ## Unregistering a single subscription:
 
 If you need to unregister a subscription (a typical case would be inside the React.js component), it is as easy as calling a return value of the `#on` method as a function:
@@ -132,7 +97,4 @@ provide polyfills for `Array.forEach` and `Array.filter` functions. Check out e.
 
 ## Contributing
 
-Feel free to report any issue or idea on the GitHub page of this project. We can't do open source so we can't grasp the typical _fork_ process of doing things. If you report an issue, please try to provide reproducing steps or any piece of code that can reproduce the issue.
-
-Oh, and you can ask us anything by [writing an e-mail to us](mailto:dev@arkency.com).
-
+Feel free to report any issue or idea on the GitHub page of this project. If you report an issue, please try to provide reproducing steps or any piece of code that can reproduce the issue.
