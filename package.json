@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/arkency/event-bus#readme",
   "devDependencies": {
-    "mocha": "^2.3.4",
+    "mocha": "^8.0.1",
     "webpack": "^1.12.6"
   }
 }
