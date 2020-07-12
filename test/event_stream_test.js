@@ -181,11 +181,7 @@ describe("Event Stream", function() {
   });
 
   it("calls listeners in a first in, first out fashion", function() {
-    var instance = EventStream();
-    var instanceNew = new EventStream();
-
-    this.assertFirstInFirstOutBehavior(assert, instance);
-    this.assertFirstInFirstOutBehavior(assert, instanceNew);
+    this.assertFirstInFirstOutBehavior(assert, new EventStream());
   });
 
   it("allows you to unregister the single subscription", 
