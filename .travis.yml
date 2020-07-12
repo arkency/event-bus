@@ -3,9 +3,7 @@ cache:
   directories:
   - node_modules
 node_js:
-- '4.1'
-- '4.0'
-- '0.12'
+- 'node'
 notifications:
   slack:
     secure: YA672Y5vCCEfjZFcAi9pOwq+fFNdkpVN6fhdg/dXPJmtFenEXxtCnZ2uIY71nE0rvSqu72Y6FAOzQLz8f+qXx5RSXfswI2LNDyqjGj9JFtQF/TtVeq+KB+FLB2xDsrFivh4/wYhNZ+PetVOnif10bBJoahKFA5iL0tRiOfzR8DK6fKb/4W8uM7NgI0AE45Y4nkXgZPv+o9HrD6zlxKS+k746brvA3OHknG/MnfZ782HeX1wE/QAnN4j9t6MaS8pcFN1StIPCNWSxhf+fQ68HkgbR6vqbFBzu/7Za6/KwaF5cZkL2NJUi9ljRqEatRlekCtE2HUJbedZX+1jV+JBPz7zsCgSvKsMTQ/pJGTMt4lpgAsPIFntcUD3NKZVwdWuRjbqVySJOkaSyaj8U8tNckc23f0kbeg2OGpjDgzckjDP5wDukoVp+BXPxQlkWz7OPVWIbzhi5yNEZknPN5Mp10oPjaI6RpTVy8FV0pnYS48UncBvr31SKzHH4U63HDzJPVMH8YqBPHkddPhgD4bUB5yjXDgZqtsPytX11fFhXAQJ/dfFmORHTdoh9oRsYWVJCn7xMvbuTVxUCjdpV9yxA4BY4d9xraJR4VXczxf4uV8T9+13pniMZdA1i22/G8qaqg7FxplfDm3ufaLoqvcJt8egHGjBbjABYj8pLzqh8mO4=
