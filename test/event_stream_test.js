@@ -148,16 +148,17 @@ describe("Event Stream", function() {
       var secondCallback = function() { secondCounter += 1; };
 
       instance.on('event', firstCallback);
-      instance.on('event', secondCallback);
       instance.on('event', firstCallback);
+      instance.on('event2', secondCallback);
 
       instance.publish('event');
 
       assert(firstCounter === 2)
-      assert(secondCounter === 1)
+      assert(secondCounter === 0)
 
-      instance.unregisterAllCallbacks()
+      instance.unregisterCallbacksForEvent('event')
       instance.publish('event');
+      instance.publish('event2');
 
       assert(firstCounter === 2)
       assert(secondCounter === 1)
