@@ -79,14 +79,34 @@ var subscription = EventBus.on('event', function() {
 subscription();
 ````
 
-## Unregistering all subscriptions:
+## Unregistering subscriptions in bulk:
 
-Since by default `EventBus` is a singleton instance of the bus, there may be occasions where you need to unregister all subscriptions (most notably - during testing as a `afterEach` step). It can be done by calling `unregisterAllCallbacks` method of an event bus:
+Since by default `EventBus` is a singleton instance of the bus, there may be occasions where you need to unregister all subscriptions (most notably - during testing). It can be done by calling following methods:
+
+
+#### `#unregisterAllCallbacks`
+
+Removes all event handlers.
 
 ````javascript
 import EventBus from "eventing-bus";
 
 EventBus.unregisterAllCallbacks();
+````
+
+#### `#unregisterCallbacksForEvent`
+
+Remvoes all event handlers for specific event
+
+````javascript
+import EventBus from "eventing-bus";
+
+EventBus.on('exampleEvent', () => { console.log("EXAMPLE") });
+EventBus.publish("exampleEvent"); // Logs `EXAMPLE`
+
+EventBus.unregisterCallbacksForEvent('exampleEvent');
+
+EventBus.publish("exampleEvent"); // Empty output
 ````
 
 ## Compatibility
