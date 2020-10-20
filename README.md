@@ -6,27 +6,21 @@ Simple event bus for your JavaScript application without any dependencies and wi
 
 ## Installation:
 
-### Node.js:
+### Npm:
 
 ```
 npm install --save eventing-bus
 ```
 
-### Webpack:
+### Yarn:
 
 ```
 yarn add eventing-bus
 ```
 
-or for NPM:
-
-```
-npm install --save eventing-bus
-```
-
 ## Global event bus
 
-By default exports in JavaScript are evaluated only once. This way we can ensure to have one global event bus without doing anything on our side.
+By default, exports in JavaScript are evaluated only once. This way, we are ensured to have one global event bus without doing anything on our side.
 
 There is also a possibility to define an event stream [separately from the global bus](#more-than-one-event-bus).
 
