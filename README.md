@@ -81,7 +81,7 @@ EventBus.publish('event') // No output in console
 
 #### Use `#unregisterCallback`
 
-In case you have no easy access to value returned by `#on`, you can just call `#unregisterCallback`. Additional benefit is that this function does not require knowing an event name. This way you can de-register every single usage of suck callback.
+In case you have no easy access to value returned by `#on`, you can just call `#unregisterCallback`. Additional benefit is that this function does not require knowing an event name. This way you can de-register every single usage of such callback.
 
 ````javascript
 import EventBus from 'eventing-bus';
